@@ -66,27 +66,6 @@ def test_list_all_companies_success(client, company):
         assert data[i]['description'] == companies[i].data['description']
 
 
-# @override_settings(MEDIA_ROOT=os.path.join(BASE_DIR, 'tests', 'test_media'))
-# @pytest.mark.django_db
-# def test_get_company_by_id_success(client, company):
-#     companies = (
-#         company().generate(), company().generate(), company().generate()
-#     )
-#     client.post(urls['companies'], companies[0])
-#     test_target = client.post(urls['companies'], companies[1])
-#     targ_data = test_target.data
-#     client.post(urls['companies'], companies[2])
-#     this_path = urls['companies'] + str(targ_data['id']) + '/'
-#     request = client.get(this_path)
-#     data = request.data
-#
-#     assert request.status_code == 200
-#     assert data['id'] == targ_data['id']
-#     assert data['name'] == targ_data['name']
-#     assert data['logo'] == targ_data['logo']
-#     assert data['description'] == targ_data['description']
-
-
 @override_settings(MEDIA_ROOT=os.path.join(BASE_DIR, 'tests', 'test_media'))
 @pytest.mark.django_db
 def test_get_company_by_id_success2(client, company):
@@ -178,42 +157,3 @@ def test_retrieve_expanded_company_success(client, company, employee):
     assert comp_wo_emps.status_code == 200
     assert len(comp_w_emps.data['employees']) == 3
     assert len(comp_wo_emps.data['employees']) == 0
-
-
-
-
-
-# @override_settings(MEDIA_ROOT=os.path.join(BASE_DIR, 'tests', 'test_media'))
-# @pytest.mark.django_db
-# def test_(client, company):
-#     pass
-#
-#
-# @override_settings(MEDIA_ROOT=os.path.join(BASE_DIR, 'tests', 'test_media'))
-# @pytest.mark.django_db
-# def test_(client, company):
-#     pass
-#
-#
-# @override_settings(MEDIA_ROOT=os.path.join(BASE_DIR, 'tests', 'test_media'))
-# @pytest.mark.django_db
-# def test_(client, company):
-#     pass
-#
-#
-# @override_settings(MEDIA_ROOT=os.path.join(BASE_DIR, 'tests', 'test_media'))
-# @pytest.mark.django_db
-# def test_(client, company):
-#     pass
-#
-#
-# @override_settings(MEDIA_ROOT=os.path.join(BASE_DIR, 'tests', 'test_media'))
-# @pytest.mark.django_db
-# def test_(client, company):
-#     pass
-#
-#
-# @override_settings(MEDIA_ROOT=os.path.join(BASE_DIR, 'tests', 'test_media'))
-# @pytest.mark.django_db
-# def test_(client, company):
-#     pass
