@@ -9,11 +9,18 @@ from .models import Employee
 from .serializers import EmployeeSerializer
 
 
+@extend_schema(
+        request=EmployeeSerializer,
+        responses=EmployeeSerializer
+)
 class ListCreateEmployeesView(APIView):
     """
     A view for creating employees and listing them.
     """
 
+    @extend_schema(
+        summary='List all employees'
+    )
     def get(self, request):
         """
         Lists all records of employees.
@@ -22,6 +29,9 @@ class ListCreateEmployeesView(APIView):
         serializer = EmployeeSerializer(employees, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+    @extend_schema(
+        summary='Add new employee'
+    )
     def post(self, request):
         """
         Creates an employee record.
@@ -33,12 +43,19 @@ class ListCreateEmployeesView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+@extend_schema(
+        request=EmployeeSerializer,
+        responses=EmployeeSerializer
+)
 class RetrieveUpdateDeleteEmployeeView(APIView):
     """
     A view that takes int:pk as an argument and provides get, patch and delete
     functionality for the employee records.
     """
 
+    @extend_schema(
+        summary='Find employee by ID'
+    )
     def get(self, request, pk):
         """
         Returns the employee record with the provided pk.
@@ -47,6 +64,9 @@ class RetrieveUpdateDeleteEmployeeView(APIView):
         serializer = EmployeeSerializer(employee)
         return Response(serializer.data)
 
+    @extend_schema(
+        summary='Update employee'
+    )
     def patch(self, request, pk):
         """
         Partially updates the employee record with the provided pk and
@@ -59,6 +79,9 @@ class RetrieveUpdateDeleteEmployeeView(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    @extend_schema(
+        summary='Delete employee'
+    )
     def delete(self, request, pk):
         """
         Deletes the employee record with the provided pk and
