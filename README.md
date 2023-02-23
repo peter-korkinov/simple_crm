@@ -1,6 +1,9 @@
+# Simple CRM
+
 #### OpenAPI documentation available
 
 This is Simple CRM system for companies and employees.It is set up by default for use with PostgreSQL.
+
 
 It contains two apps - "companies" and "employees".
 
@@ -34,31 +37,57 @@ or simply download using the url:
 
 Then open the main project directory in terminal and run:
 
+
+
 ```bash
-pip install -r requirements.txt
+pip install virtualenv # if you don't already have virtualenv installed
+```
+```bash
+virtualenv venv # to create your new environment(called 'venv' here)
+```
+```bash
+venv/Source/activate # to enter the virtual environment
+```
+```bash
+pip install -r requirements.txt # to install requirements in the current environment
+```
+&nbsp;
+
+The project is set up by default to use PostgreSQL configured with environment variables.
+To use it in that way you need to create a ".env" file in the root directory and set the following variables in it:
+
+```bash
+DB_NAME='your db name'
+DB_USER='your db username'
+DB_PASS='your db password'
+DB_HOST='your db host'
+DB_PORT='your db port'
+DEBUG=True
+```
+
+Or you can uncomment the default 'DATABASES' parameter in project's settings file and use SQLite.
+(And also set the 'DEBUG' parameter to True or set ALLOWED_HOSTS)
+
+&nbsp;
+
+
+```bash 
+python manage.py makemigrations # to makemigrations
+```
+```bash
+python manage.py migrate # to migrate
 ```
 &nbsp;
 
 
-To run the program in local server use the following command
+Then finally to run the project in local server use the following command:
 ```bash
 python manage.py runserver
 ```
 
-Then go to [http://localhost:8000/](http://localhost:8000/) in your browser
-
 To access the **OpenAPI** documentation open:
 [http://localhost:8000/api/schema/swagger-ui/](http://localhost:8000/api/schema/swagger-ui/)
 
-&nbsp;
-
-
-### To migrate the database
-
-```bash 
-python manage.py makemigrations
-python manage.py migrate
-```
 &nbsp;
 
 ### To use admin panel you need to create superuser using this command
@@ -66,4 +95,3 @@ python manage.py migrate
 ``` bash
 python manage.py createsuperuser
 ```
-
