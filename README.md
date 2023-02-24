@@ -46,7 +46,7 @@ pip install virtualenv # if you don't already have virtualenv installed
 virtualenv venv # to create your new environment(called 'venv' here)
 ```
 ```bash
-venv/Source/activate # to enter the virtual environment
+venv/Scripts/activate # to enter the virtual environment
 ```
 ```bash
 pip install -r requirements.txt # to install requirements in the current environment
